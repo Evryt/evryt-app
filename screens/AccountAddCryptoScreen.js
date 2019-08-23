@@ -6,7 +6,7 @@ export default class AccountAddCryptoScreen extends Component {
     return (
       <ScrollView>
         <FlatList
-          data={["Bitcoin", "Ethereum"]}
+          data={["Bitcoin", "Ethereum"].sort()}
           renderItem={({ item }) => <ListItem>{item}</ListItem>}
         />
       </ScrollView>
