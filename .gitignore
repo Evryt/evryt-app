@@ -106,4 +106,5 @@ shellAppWorkspaces
 .env.development.local
 .env.test.local
 .env.production.local
-web-build/report.html
+
+/web-build
