@@ -79,7 +79,10 @@ export default function AccountListScreen(props) {
           </TouchableOpacity>
         </View>
         {ACCOUNTS.map((account, key) => (
-          <TouchableOpacity key={key}>
+          <TouchableOpacity
+            key={key}
+            onPress={() => props.navigation.push("Account", { ...account })}
+          >
             <Card {...account} />
           </TouchableOpacity>
         ))}

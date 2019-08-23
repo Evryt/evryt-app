@@ -10,6 +10,7 @@ import AccountListScreen from "../screens/AccountListScreen";
 import LinksScreen from "../screens/LinksScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import AccountAddScreen from "../screens/AccountAddScreen";
+import AccountScreen from "../screens/AccountScreen";
 
 const config = Platform.select({
   web: { headerMode: "screen" },
@@ -19,7 +20,8 @@ const config = Platform.select({
 const AccountStack = createStackNavigator(
   {
     AccountList: AccountListScreen,
-    AccountAdd: AccountAddScreen
+    AccountAdd: AccountAddScreen,
+    Account: AccountScreen
   },
   config
 );
