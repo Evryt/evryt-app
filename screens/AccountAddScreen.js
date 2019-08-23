@@ -16,7 +16,10 @@ export default class AccountAddScreen extends Component {
         }}
       >
         <View style={{ width: "100%", padding: 20 }}>
-          <TouchableOpacity style={{ width: "100%" }}>
+          <TouchableOpacity
+            style={{ width: "100%" }}
+            onPress={() => this.props.navigation.push("AccountAddBank")}
+          >
             <View
               style={{
                 display: "flex",
@@ -36,7 +39,10 @@ export default class AccountAddScreen extends Component {
           <Text>or</Text>
         </View>
         <View style={{ width: "100%", padding: 20 }}>
-          <TouchableOpacity style={{ width: "100%" }}>
+          <TouchableOpacity
+            style={{ width: "100%" }}
+            onPress={() => this.props.navigation.push("AccountAddCrypto")}
+          >
             <View
               style={{
                 display: "flex",

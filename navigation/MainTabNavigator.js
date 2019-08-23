@@ -10,7 +10,9 @@ import AccountListScreen from "../screens/AccountListScreen";
 import LinksScreen from "../screens/LinksScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import AccountAddScreen from "../screens/AccountAddScreen";
-import AccountScreen from "../screens/AccountScreen";
+import AccountDetailsScreen from "../screens/AccountDetailsScreen";
+import AccountAddBankScreen from "../screens/AccountAddBankScreen";
+import AccountAddCryptoScreen from "../screens/AccountAddCryptoScreen";
 
 const config = Platform.select({
   web: { headerMode: "screen" },
@@ -21,7 +23,9 @@ const AccountStack = createStackNavigator(
   {
     AccountList: AccountListScreen,
     AccountAdd: AccountAddScreen,
-    Account: AccountScreen
+    AccountDetails: AccountDetailsScreen,
+    AccountAddBank: AccountAddBankScreen,
+    AccountAddCrypto: AccountAddCryptoScreen
   },
   config
 );
