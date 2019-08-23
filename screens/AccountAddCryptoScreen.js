@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Text, ScrollView, FlatList, View } from "react-native";
+import { Text, ScrollView, FlatList } from "react-native";
+import ListItem from "../components/ListItem";
 
 export default class AccountAddCryptoScreen extends Component {
   render() {
