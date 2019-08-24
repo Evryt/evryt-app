@@ -16,11 +16,12 @@ export default class AccountCard extends Component {
   render() {
     return (
       <Card>
-        <Text>{this.props.account.bank}</Text>
+        <Text style={{ fontSize: 20, fontWeight: "700" }}>
+          {this.props.account.bank}
+        </Text>
+        <Text style={{ fontSize: 18 }}>{this.renderBalance()}</Text>
         <Text>{this.props.account.name}</Text>
-        <Text>{this.props.account.type}</Text>
-        <Text>{this.renderAddress()}</Text>
-        <Text>{this.renderBalance()}</Text>
+        <Text style={{ fontSize: 10 }}>{this.renderAddress()}</Text>
       </Card>
     );
   }
