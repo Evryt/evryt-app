@@ -11,6 +11,9 @@ import AccountAddScreen from "../screens/AccountAddScreen";
 import AccountDetailsScreen from "../screens/AccountDetailsScreen";
 import AccountAddBankScreen from "../screens/AccountAddBankScreen";
 import AccountAddCryptoScreen from "../screens/AccountAddCryptoScreen";
+import ExchangeMainScreen from "../screens/exchange/ExchangeMainScreen";
+import CertificateListScreen from "../screens/certificate/CertificateListScreen";
+import SettingsScreen from "../screens/demos/SettingsScreen";
 
 const config = Platform.select({
   web: { headerMode: "screen" },
@@ -57,7 +60,40 @@ LinksStack.navigationOptions = {
   )
 };
 
-LinksStack.path = "";
+LinksStack.path = "";*/
+
+const ExchangeStack = createStackNavigator(
+  {
+    ExchangeMain: ExchangeMainScreen
+  },
+  config
+);
+
+ExchangeStack.navigationOptions = {
+  tabBarLabel: "Swap",
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === "ios" ? "ios-swap" : "md-swap"}
+    />
+  )
+};
+
+const CertificateStack = createStackNavigator(
+  {
+    CertificateList: CertificateListScreen
+  },
+  config
+);
+
+CertificateStack.navigationOptions = {
+  tabBarLabel: "Certificates",
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon focused={focused} name={"md-checkbox-outline"} />
+  )
+};
+
+CertificateStack.path = "";
 
 const SettingsStack = createStackNavigator(
   {
@@ -76,12 +112,13 @@ SettingsStack.navigationOptions = {
   )
 };
 
-SettingsStack.path = "";*/
+SettingsStack.path = "";
 
 const tabNavigator = createBottomTabNavigator({
-  AccountStack
-  //LinksStack,
-  //SettingsStack
+  AccountStack,
+  ExchangeStack,
+  CertificateStack,
+  SettingsStack
 });
 
 tabNavigator.path = "";
