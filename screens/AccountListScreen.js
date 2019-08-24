@@ -24,8 +24,15 @@ export default class AccountListScreen extends Component {
     this.state = {
       accounts: null
     };
+    const willFocusSubscription = this.props.navigation.addListener(
+      "willFocus",
+      () => {
+        this.refreshAccounts();
+      }
+    );
   }
-  async componentWillMount() {
+  async refreshAccounts() {
+    this.setState({ accounts: null });
     this.setState({ accounts: await AccountManager.getAccounts() });
   }
   render() {

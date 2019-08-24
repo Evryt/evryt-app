@@ -13,8 +13,8 @@ export default class Card extends Component {
             marginLeft: 20,
             marginRight: 20,
             backgroundColor: "#EEEEEE",
-            padding: 20,
-            height: 191
+            padding: 20
+            /*height: 191*/
           }
         ]}
       >

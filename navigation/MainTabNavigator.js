@@ -7,8 +7,6 @@ import {
 
 import TabBarIcon from "../components/TabBarIcon";
 import AccountListScreen from "../screens/AccountListScreen";
-import LinksScreen from "../screens/LinksScreen";
-import SettingsScreen from "../screens/SettingsScreen";
 import AccountAddScreen from "../screens/AccountAddScreen";
 import AccountDetailsScreen from "../screens/AccountDetailsScreen";
 import AccountAddBankScreen from "../screens/AccountAddBankScreen";
@@ -42,7 +40,7 @@ AccountStack.navigationOptions = {
 
 AccountStack.path = "";
 
-const LinksStack = createStackNavigator(
+/*const LinksStack = createStackNavigator(
   {
     Links: LinksScreen
   },
@@ -78,12 +76,12 @@ SettingsStack.navigationOptions = {
   )
 };
 
-SettingsStack.path = "";
+SettingsStack.path = "";*/
 
 const tabNavigator = createBottomTabNavigator({
-  AccountStack,
-  LinksStack,
-  SettingsStack
+  AccountStack
+  //LinksStack,
+  //SettingsStack
 });
 
 tabNavigator.path = "";

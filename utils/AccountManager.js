@@ -1,8 +1,24 @@
+import { AsyncStorage } from "react-native";
+
 import EtherMainnetAccount from "./EtherMainnetAccount";
 import EtherRinkebyAccount from "./EtherRinkebyAccount";
+
+const parsers = {
+  ethereum: EtherMainnetAccount,
+  rinkeby: EtherRinkebyAccount
+};
+
 class AccountManager {
   async getAccounts() {
-    return [new EtherMainnetAccount(), new EtherRinkebyAccount()];
+    if ((await AsyncStorage.getItem("@AccountManager:accounts")) === null) {
+      await AsyncStorage.setItem(
+        "@AccountManager:accounts",
+        JSON.stringify([])
+      );
+    }
+    return JSON.parse(
+      await AsyncStorage.getItem("@AccountManager:accounts")
+    ).map(account => this.parseAccount(account));
     /*return await new Promise(resolve => {
       setTimeout(
         () =>
@@ -51,6 +67,20 @@ class AccountManager {
         2000
       );
     });*/
+  }
+  parseAccount(account) {
+    const accountType = account[0];
+    const param = account[1];
+    return new parsers[accountType](param);
+  }
+  async addAccount(accountType, param) {
+    await AsyncStorage.setItem(
+      "@AccountManager:accounts",
+      JSON.stringify([
+        ...JSON.parse(await AsyncStorage.getItem("@AccountManager:accounts")),
+        [accountType, param]
+      ])
+    );
   }
 }
 
