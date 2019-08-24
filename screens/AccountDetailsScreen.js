@@ -3,7 +3,7 @@ import { Text, SafeAreaView, View } from "react-native";
 import IOSLargeTitle from "../components/IOSLargeTitle";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
-import { thisExpression } from "@babel/types";
+import QRCode from "react-native-qrcode";
 
 export default class AccountScreen extends Component {
   constructor(props) {
@@ -32,6 +32,7 @@ export default class AccountScreen extends Component {
           </TouchableOpacity>
           <IOSLargeTitle text={account.bank} />
         </View>
+        <QRCode size={200} text={"ethereum:" + account.account.address} />
         <Text>
           {this.state.balance !== null
             ? this.state.balance + " " + account.currency
