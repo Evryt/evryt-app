@@ -92,6 +92,12 @@ class AccountManager {
   async getAuthDetails() {
     return await AsyncStorage.getItem("@AccountManager:token");
   }
+  async auth(token) {
+    await AsyncStorage.setItem("@AccountManager:token", token);
+  }
+  async deauth() {
+    return await AsyncStorage.removeItem("@AccountManager:token");
+  }
 }
 
 export default new AccountManager();

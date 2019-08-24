@@ -13,8 +13,11 @@ import AccountAddBankScreen from "../screens/AccountAddBankScreen";
 import AccountAddCryptoScreen from "../screens/AccountAddCryptoScreen";
 import ExchangeMainScreen from "../screens/exchange/ExchangeMainScreen";
 import CertificateListScreen from "../screens/certificate/CertificateListScreen";
-import SettingsScreen from "../screens/demos/SettingsScreen";
+import SettingsScreen from "../screens/settings/SettingsScreen";
 import AccountSendScreen from "../screens/AccountSendScreen";
+import BackendLoginScreen from "../screens/settings/auth/BackendLoginScreen";
+import BackendRegisterScreen from "../screens/settings/auth/BackendRegisterScreen";
+import BackendAuthScreen from "../screens/settings/auth/BackendAuthScreen";
 
 const config = Platform.select({
   web: { headerMode: "screen" },
@@ -99,7 +102,10 @@ CertificateStack.path = "";
 
 const SettingsStack = createStackNavigator(
   {
-    Settings: SettingsScreen
+    Settings: SettingsScreen,
+    BackendLogin: BackendLoginScreen,
+    BackendRegister: BackendRegisterScreen,
+    BackendAuth: BackendAuthScreen
   },
   config
 );
