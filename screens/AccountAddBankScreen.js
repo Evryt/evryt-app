@@ -55,7 +55,11 @@ export default class AccountAddBankScreen extends Component {
                     "?name=" +
                     encodeURIComponent(item.name) +
                     "&endpoint=" +
-                    encodeURIComponent(item.apiUrl)
+                    encodeURIComponent(item.apiUrl) +
+                    "&appid=" +
+                    encodeURIComponent(item.appID) +
+                    "&appname=" +
+                    "Evryt"
                 );
                 this.props.navigation.popToTop();
               }}
