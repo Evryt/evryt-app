@@ -8,13 +8,13 @@ export default class AccountAddBankScreen extends Component {
       <ScrollView>
         <FlatList
           data={[
-            "Revolut",
-            "Alior Bank",
-            "T-Mobile Usługi Bankowe",
-            "Telekom Banking (RO)",
-            "Fake Bank Ltd"
+            { key: "Revolut" },
+            { key: "Alior Bank" },
+            { key: "T-Mobile Usługi Bankowe" },
+            { key: "Telekom Banking (RO)" },
+            { key: "Fake Bank Ltd" }
           ].sort()}
-          renderItem={({ item }) => <ListItem>{item}</ListItem>}
+          renderItem={({ item }) => <ListItem>{item.key}</ListItem>}
         />
       </ScrollView>
     );
