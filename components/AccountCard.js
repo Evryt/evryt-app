@@ -5,7 +5,6 @@ import Card from "./Card";
 export default class AccountCard extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       balance: null
     };

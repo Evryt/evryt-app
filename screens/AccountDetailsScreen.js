@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Text, SafeAreaView, View, ScrollView, Button } from "react-native";
+import {
+  Text,
+  SafeAreaView,
+  View,
+  ScrollView,
+  Button,
+  Alert,
+  Clipboard
+} from "react-native";
 import IOSLargeTitle from "../components/IOSLargeTitle";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
@@ -72,19 +80,45 @@ export default class AccountScreen extends Component {
                   />
                 ))
             ) : (
-              <Text>No recorded transactions for this account.</Text>
+              <Text style={{ paddingLeft: 20, paddingBottom: 20 }}>
+                No recorded transactions for this account.
+              </Text>
             )
           ) : (
-            <Text>Fetching transactions...</Text>
+            <Text style={{ paddingLeft: 20, paddingBottom: 20 }}>
+              Fetching transactions...
+            </Text>
           )}
+          <Button
+            title="Copy address to clipboard"
+            onPress={async () => {
+              Clipboard.setString(account.account.address);
+            }}
+          />
           <Button
             title="Delete account"
             color="#ff0000"
             onPress={async () => {
-              await AccountManager.delete(
-                this.props.navigation.state.params.accountIndex
+              Alert.alert(
+                "Are you sure?",
+                "This action is irreversible.",
+                [
+                  {
+                    text: "OK",
+                    onPress: async () => {
+                      await AccountManager.delete(
+                        this.props.navigation.state.params.accountIndex
+                      );
+                      this.props.navigation.pop();
+                    },
+                    style: "cancel"
+                  },
+                  {
+                    text: "Cancel"
+                  }
+                ],
+                { cancelable: false }
               );
-              this.props.navigation.pop();
             }}
           />
         </ScrollView>

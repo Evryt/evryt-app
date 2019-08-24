@@ -89,6 +89,9 @@ class AccountManager {
     arr.splice(accountIndex, 1);
     await AsyncStorage.setItem("@AccountManager:accounts", JSON.stringify(arr));
   }
+  async getAuthDetails() {
+    return await AsyncStorage.getItem("@AccountManager:token");
+  }
 }
 
 export default new AccountManager();
