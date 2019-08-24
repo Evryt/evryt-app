@@ -6,7 +6,8 @@ export default class EtherRinkebyAccount extends GenericEtherAccount {
       privateKey,
       "https://api-rinkeby.etherscan.io/api",
       "Ethereum Rinkeby",
-      "RIN"
+      "RIN",
+      4
     );
   }
 }

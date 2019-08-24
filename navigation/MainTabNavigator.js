@@ -14,6 +14,7 @@ import AccountAddCryptoScreen from "../screens/AccountAddCryptoScreen";
 import ExchangeMainScreen from "../screens/exchange/ExchangeMainScreen";
 import CertificateListScreen from "../screens/certificate/CertificateListScreen";
 import SettingsScreen from "../screens/demos/SettingsScreen";
+import AccountSendScreen from "../screens/AccountSendScreen";
 
 const config = Platform.select({
   web: { headerMode: "screen" },
@@ -26,7 +27,8 @@ const AccountStack = createStackNavigator(
     AccountAdd: AccountAddScreen,
     AccountDetails: AccountDetailsScreen,
     AccountAddBank: AccountAddBankScreen,
-    AccountAddCrypto: AccountAddCryptoScreen
+    AccountAddCrypto: AccountAddCryptoScreen,
+    AccountSend: AccountSendScreen
   },
   config
 );

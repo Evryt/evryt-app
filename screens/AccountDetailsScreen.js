@@ -54,6 +54,12 @@ export default class AccountScreen extends Component {
           >
             <QRCode size={200} value={"ethereum:" + account.account.address} />
           </View>
+          <Button
+            title={"Send transaction"}
+            onPress={async () => {
+              this.props.navigation.push("AccountSend", { account });
+            }}
+          />
           <IOSLargeTitle text="Balance" />
           <Text style={{ paddingLeft: 20, fontSize: 20 }}>
             {this.state.balance !== null
@@ -64,6 +70,7 @@ export default class AccountScreen extends Component {
           {this.state.transactions !== null ? (
             this.state.transactions.length !== 0 ? (
               this.state.transactions
+                .reverse()
                 .slice(0, 10)
                 .map(tx => (
                   <TransactionCard
