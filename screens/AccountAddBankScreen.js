@@ -10,6 +10,7 @@ import ListItem from "../components/ListItem";
 import config from "../config.json";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as WebBrowser from "expo-web-browser";
+import AccountManager from "../utils/AccountManager.js";
 
 export default class AccountAddBankScreen extends Component {
   constructor(props) {
@@ -59,7 +60,9 @@ export default class AccountAddBankScreen extends Component {
                     "&appid=" +
                     encodeURIComponent(item.appID) +
                     "&appname=" +
-                    "Evryt"
+                    "Evryt" +
+                    "&session=" +
+                    (await AccountManager.getAuthDetails())
                 );
                 this.props.navigation.popToTop();
               }}
