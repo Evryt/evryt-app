@@ -25,14 +25,12 @@ export default class GenericEtherAccount {
   }
 
   async getTransactions() {
-    return await fetch(
+    return (await fetch(
       this.etherscanEndpoint +
         "?module=account&action=txlist&address=" +
         this.account.address +
         "&startblock=0&endblock=99999999&sort=asc&apikey=" +
         config.etherscanApiKey
-    )
-      .then(res => res.json())
-      .catch(console.error);
+    ).then(res => res.json())).result;
   }
 }
