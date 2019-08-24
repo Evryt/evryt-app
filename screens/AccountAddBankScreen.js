@@ -59,6 +59,10 @@ export default class AccountAddBankScreen extends Component {
                     encodeURIComponent(item.apiUrl) +
                     "&appid=" +
                     encodeURIComponent(item.appID) +
+                    "&redirect=" +
+                    encodeURIComponent(
+                      config.backendEndpoint + "/banks/relay-tmp-token"
+                    ) +
                     "&appname=" +
                     "Evryt" +
                     "&session=" +
