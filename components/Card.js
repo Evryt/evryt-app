@@ -18,17 +18,7 @@ export default class Card extends Component {
           }
         ]}
       >
-        <Text>{this.props.bank}</Text>
-        <Text>{this.props.name}</Text>
-        <Text>{this.props.type}</Text>
-        <Text>
-          {this.props.type === "crypto" || this.props.type === "erc20"
-            ? "Address: " + this.props.address
-            : "IBAN: " + this.props.iban}
-        </Text>
-        <Text>
-          {this.props.balance} {this.props.currency}
-        </Text>
+        {this.props.children}
       </View>
     );
   }

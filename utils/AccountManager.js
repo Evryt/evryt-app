@@ -1,6 +1,9 @@
+import EtherMainnetAccount from "./EtherMainnetAccount";
+import EtherRinkebyAccount from "./EtherRinkebyAccount";
 class AccountManager {
-  getAccounts() {
-    return new Promise(resolve => {
+  async getAccounts() {
+    return [new EtherMainnetAccount(), new EtherRinkebyAccount()];
+    /*return await new Promise(resolve => {
       setTimeout(
         () =>
           resolve([
@@ -47,7 +50,7 @@ class AccountManager {
           ]),
         2000
       );
-    });
+    });*/
   }
 }
 

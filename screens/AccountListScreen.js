@@ -16,6 +16,7 @@ import IOSLargeTitle from "../components/IOSLargeTitle";
 import { SafeAreaView } from "react-navigation";
 import { Ionicons } from "@expo/vector-icons";
 import AccountManager from "../utils/AccountManager";
+import AccountCard from "../components/AccountCard";
 
 export default class AccountListScreen extends Component {
   constructor(props) {
@@ -62,7 +63,7 @@ export default class AccountListScreen extends Component {
                 this.props.navigation.push("AccountDetails", { ...account })
               }
             >
-              <Card {...account} />
+              <AccountCard account={account} />
             </TouchableOpacity>
           ))}
         </ScrollView>

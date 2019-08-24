@@ -108,3 +108,4 @@ shellAppWorkspaces
 .env.production.local
 
 /web-build
+config.json
