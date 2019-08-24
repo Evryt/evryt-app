@@ -32,12 +32,21 @@ export default class AccountScreen extends Component {
           </TouchableOpacity>
           <IOSLargeTitle text={account.bank} />
         </View>
-        <QRCode size={200} text={"ethereum:" + account.account.address} />
         <Text>
           {this.state.balance !== null
             ? this.state.balance + " " + account.currency
             : "Fetching balance..."}
         </Text>
+        <View
+          style={{
+            paddingBottom: 20,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <QRCode size={200} text={"ethereum:" + account.account.address} />
+        </View>
         <View>
           {this.state.transactions !== null ? (
             this.state.transactions.length !== 0 ? (
