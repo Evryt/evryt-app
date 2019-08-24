@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Text, SafeAreaView, View, ScrollView } from "react-native";
+import { Text, SafeAreaView, View, ScrollView, Button } from "react-native";
 import IOSLargeTitle from "../components/IOSLargeTitle";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import QRCode from "react-native-qrcode";
-import Card from "../components/Card";
+import TransactionCard from "../components/TransactionCard";
+import AccountManager from "../utils/AccountManager";
 
 export default class AccountScreen extends Component {
   constructor(props) {
@@ -54,17 +55,38 @@ export default class AccountScreen extends Component {
           <IOSLargeTitle text="Transactions" />
           {this.state.transactions !== null ? (
             this.state.transactions.length !== 0 ? (
-              this.state.transactions.map(tx => (
-                <Card key={tx.hash}>
-                  <Text>{JSON.stringify(tx)}</Text>
-                </Card>
-              ))
+              this.state.transactions
+                .slice(0, 10)
+                .map(tx => (
+                  <TransactionCard
+                    key={tx.hash}
+                    from={tx.from}
+                    to={tx.to}
+                    value={tx.value}
+                    currency={account.currency}
+                    timestamp={tx.timeStamp}
+                    in={
+                      tx.to.toLowerCase() ===
+                      account.account.address.toLowerCase()
+                    }
+                  />
+                ))
             ) : (
               <Text>No recorded transactions for this account.</Text>
             )
           ) : (
             <Text>Fetching transactions...</Text>
           )}
+          <Button
+            title="Delete account"
+            color="#ff0000"
+            onPress={async () => {
+              await AccountManager.delete(
+                this.props.navigation.state.params.accountIndex
+              );
+              this.props.navigation.pop();
+            }}
+          />
         </ScrollView>
       </SafeAreaView>
     );

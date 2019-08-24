@@ -67,7 +67,10 @@ export default class AccountListScreen extends Component {
             <TouchableOpacity
               key={key}
               onPress={() =>
-                this.props.navigation.push("AccountDetails", { account })
+                this.props.navigation.push("AccountDetails", {
+                  accountIndex: key,
+                  account
+                })
               }
             >
               <AccountCard account={account} />

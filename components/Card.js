@@ -6,7 +6,6 @@ export default class Card extends Component {
       <View
         {...this.props}
         style={[
-          this.props.style,
           {
             borderRadius: 10,
             marginBottom: 20,
@@ -15,7 +14,8 @@ export default class Card extends Component {
             backgroundColor: "#EEEEEE",
             padding: 20
             /*height: 191*/
-          }
+          },
+          this.props.style
         ]}
       >
         {this.props.children}

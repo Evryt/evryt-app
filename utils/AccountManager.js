@@ -82,6 +82,13 @@ class AccountManager {
       ])
     );
   }
+  async delete(accountIndex) {
+    const arr = JSON.parse(
+      await AsyncStorage.getItem("@AccountManager:accounts")
+    );
+    arr.splice(accountIndex, 1);
+    await AsyncStorage.setItem("@AccountManager:accounts", JSON.stringify(arr));
+  }
 }
 
 export default new AccountManager();
