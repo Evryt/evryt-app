@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { Text, View, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+
+import AccountManager from "../utils/AccountManager.js";
 
 export default class AccountAddScreen extends Component {
   render() {
@@ -18,7 +20,13 @@ export default class AccountAddScreen extends Component {
         <View style={{ width: "100%", padding: 20 }}>
           <TouchableOpacity
             style={{ width: "100%" }}
-            onPress={() => this.props.navigation.push("AccountAddBank")}
+            onPress={async () => {
+              if ((await AccountManager.getAuthDetails()) === null)
+                return Alert.alert(
+                  "You need to authenticate first in settings."
+                );
+              this.props.navigation.push("AccountAddBank");
+            }}
           >
             <View
               style={{
