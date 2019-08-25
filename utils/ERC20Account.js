@@ -21,6 +21,15 @@ export default class ERC20Account {
   }
 
   async getBalance() {
+    console.log(
+      this.ethereum.etherscanEndpoint +
+        "?module=account&action=tokenbalance&contractaddress=" +
+        this.contract.address +
+        "&address=" +
+        this.ethereum.account.address +
+        "&tag=latest&apikey=" +
+        config.etherscanApiKey
+    );
     return (await fetch(
       this.ethereum.etherscanEndpoint +
         "?module=account&action=tokenbalance&contractaddress=" +
