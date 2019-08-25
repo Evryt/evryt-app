@@ -44,6 +44,12 @@ export default class AccountScreen extends Component {
             </TouchableOpacity>
             <IOSLargeTitle text={account.bank} />
           </View>
+          {account.type === "fiat" && (
+            <Text style={{ padding: 20, fontSize: 20 }}>
+              {account.account.address}
+            </Text>
+          )}
+
           <IOSLargeTitle text="QRCode" />
           <View
             style={{
@@ -101,6 +107,16 @@ export default class AccountScreen extends Component {
               );
             }}
           />
+          <View
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              padding: 10
+            }}
+          >
+            <Text>type: {account.type}</Text>
+          </View>
         </ScrollView>
       </SafeAreaView>
     );
