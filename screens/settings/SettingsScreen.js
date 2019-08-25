@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Text, View, Button } from "react-native";
+import { Text, View, Button, TouchableOpacity } from "react-native";
 import AccountManager from "../../utils/AccountManager";
+import ListItem from "../../components/ListItem";
 
 export default class SettingsScreen extends Component {
   constructor(props) {
@@ -24,21 +25,50 @@ export default class SettingsScreen extends Component {
   render() {
     return (
       <View>
+        <ListItem>
+          <Text style={{ fontWeight: "bold" }}>Evryt v0.1-build-2654</Text>
+        </ListItem>
+        <ListItem>
+          <Text></Text>
+        </ListItem>
+        <ListItem>
+          <Text style={{ fontWeight: "bold" }}>Credits:</Text>
+        </ListItem>
+        <ListItem>
+          <Text>Piotr Adamczyk (mobile app, crypto support)</Text>
+        </ListItem>
+        <ListItem>
+          <Text>Marcello Bardus (bank communication, tpp)</Text>
+        </ListItem>
+
+        <ListItem>
+          <Text></Text>
+        </ListItem>
         {this.state.authDetails === null ? (
-          <Button
-            title="Auth"
+          <TouchableOpacity
             onPress={() => this.props.navigation.push("BackendAuth")}
-          />
+          >
+            <ListItem>
+              <Text style={{ color: "blue" }}>Auth with TPP</Text>
+            </ListItem>
+          </TouchableOpacity>
         ) : (
-          <Button
-            title="Deauth"
+          <TouchableOpacity
             onPress={async () => {
               await AccountManager.deauth();
               this.updateAuth();
             }}
-          />
+          >
+            <ListItem>
+              <Text style={{ color: "red" }}>Auth with TPP</Text>
+            </ListItem>
+          </TouchableOpacity>
         )}
       </View>
     );
   }
 }
+
+SettingsScreen.navigationOptions = {
+  title: "Settings"
+};

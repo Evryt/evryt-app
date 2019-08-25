@@ -5,10 +5,20 @@ import IOSLargeTitle from "../../components/IOSLargeTitle";
 export default class ExchangeMainScreen extends Component {
   render() {
     return (
-      <View>
-        <IOSLargeTitle text={"I want to give"} />
-        <IOSLargeTitle text={"I want to get"} />
+      <View
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100%"
+        }}
+      >
+        <Text style={{ fontSize: 32, color: "#ddd" }}>Coming soon</Text>
       </View>
     );
   }
 }
+
+ExchangeMainScreen.navigationOptions = {
+  title: "Swap"
+};

@@ -7,7 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import AppNavigator from "./navigation/AppNavigator";
 
-YellowBox.ignoreWarnings(["Require cycle:"]);
+YellowBox.ignoreWarnings(["Require cycle:", "no-op"]);
 
 export default function App(props) {
   const [isLoadingComplete, setLoadingComplete] = useState(false);
