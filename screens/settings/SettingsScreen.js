@@ -60,7 +60,7 @@ export default class SettingsScreen extends Component {
             }}
           >
             <ListItem>
-              <Text style={{ color: "red" }}>Auth with TPP</Text>
+              <Text style={{ color: "red" }}>Deauth TPP (debug)</Text>
             </ListItem>
           </TouchableOpacity>
         )}

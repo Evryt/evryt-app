@@ -53,9 +53,9 @@ export default class BackendLoginScreen extends Component {
       })
     }).then(res => res.json());
     if (response.error) {
-      console.error(response);
-      return Alert.alert("Error: " + response.error);
+      return Alert.alert("Error: " + JSON.stringify(response));
     }
+    console.log(response);
     await AccountManager.auth(response.session);
     Alert.alert("Authenticated successfully!");
     this.props.navigation.popToTop();
