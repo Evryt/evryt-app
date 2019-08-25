@@ -9,5 +9,6 @@ export default class EtherRinkebyAccount extends GenericEtherAccount {
       "RIN",
       4
     );
+    this.type = "ethereum";
   }
 }

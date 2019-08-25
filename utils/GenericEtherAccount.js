@@ -11,6 +11,8 @@ export default class GenericEtherAccount {
     this.bank = name;
     this.currency = currency;
     this.type = "ether";
+    this.showTransactions = true;
+    this.canDeriveToken = true;
   }
 
   async getBalance() {
@@ -41,5 +43,17 @@ export default class GenericEtherAccount {
       to,
       value: ethers.utils.parseEther(amount)
     });
+  }
+
+  deriveTokenAccount(contractAddress, tokenName, tokenCode) {
+    return {
+      type: "erc20",
+      param: {
+        account: [this.type, this.privateKey],
+        contractAddress,
+        tokenName,
+        tokenCode
+      }
+    };
   }
 }

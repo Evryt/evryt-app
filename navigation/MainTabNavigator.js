@@ -18,6 +18,7 @@ import AccountSendScreen from "../screens/AccountSendScreen";
 import BackendLoginScreen from "../screens/settings/auth/BackendLoginScreen";
 import BackendRegisterScreen from "../screens/settings/auth/BackendRegisterScreen";
 import BackendAuthScreen from "../screens/settings/auth/BackendAuthScreen";
+import AccountDeriveTokenScreen from "../screens/AccountDeriveTokenScreen";
 
 const config = Platform.select({
   web: { headerMode: "screen" },
@@ -31,7 +32,8 @@ const AccountStack = createStackNavigator(
     AccountDetails: AccountDetailsScreen,
     AccountAddBank: AccountAddBankScreen,
     AccountAddCrypto: AccountAddCryptoScreen,
-    AccountSend: AccountSendScreen
+    AccountSend: AccountSendScreen,
+    AccountDeriveToken: AccountDeriveTokenScreen
   },
   config
 );

@@ -26,7 +26,8 @@ export default class AccountScreen extends Component {
   async componentDidMount() {
     const account = this.props.navigation.state.params.account;
     this.setState({ balance: await account.getBalance() });
-    this.setState({ transactions: await account.getTransactions() });
+    if (account.showTransactions)
+      this.setState({ transactions: await account.getTransactions() });
   }
   render() {
     const account = this.props.navigation.state.params.account;
@@ -66,36 +67,8 @@ export default class AccountScreen extends Component {
               ? this.state.balance + " " + account.currency
               : "Fetching..."}
           </Text>
-          <IOSLargeTitle text="Transactions" />
-          {this.state.transactions !== null ? (
-            this.state.transactions.length !== 0 ? (
-              this.state.transactions
-                .reverse()
-                .slice(0, 10)
-                .map(tx => (
-                  <TransactionCard
-                    key={tx.hash}
-                    from={tx.from}
-                    to={tx.to}
-                    value={tx.value}
-                    currency={account.currency}
-                    timestamp={tx.timeStamp}
-                    in={
-                      tx.to.toLowerCase() ===
-                      account.account.address.toLowerCase()
-                    }
-                  />
-                ))
-            ) : (
-              <Text style={{ paddingLeft: 20, paddingBottom: 20 }}>
-                No recorded transactions for this account.
-              </Text>
-            )
-          ) : (
-            <Text style={{ paddingLeft: 20, paddingBottom: 20 }}>
-              Fetching transactions...
-            </Text>
-          )}
+          {this.renderTransactions()}
+          {this.renderDeriveToken()}
           <Button
             title="Copy address to clipboard"
             onPress={async () => {
@@ -131,6 +104,58 @@ export default class AccountScreen extends Component {
         </ScrollView>
       </SafeAreaView>
     );
+  }
+  renderTransactions() {
+    const account = this.props.navigation.state.params.account;
+    return account.showTransactions ? (
+      <View>
+        <IOSLargeTitle text="Transactions" />
+        {this.state.transactions !== null ? (
+          this.state.transactions.length !== 0 ? (
+            this.state.transactions
+              .reverse()
+              .slice(0, 10)
+              .map((tx, i) => (
+                <TransactionCard
+                  key={i}
+                  from={tx.from}
+                  to={tx.to}
+                  value={tx.value}
+                  currency={account.currency}
+                  timestamp={tx.timeStamp}
+                  in={
+                    tx.to.toLowerCase() ===
+                    account.account.address.toLowerCase()
+                  }
+                />
+              ))
+          ) : (
+            <Text style={{ paddingLeft: 20, paddingBottom: 20 }}>
+              No recorded transactions for this account.
+            </Text>
+          )
+        ) : (
+          <Text style={{ paddingLeft: 20, paddingBottom: 20 }}>
+            Fetching transactions...
+          </Text>
+        )}
+      </View>
+    ) : null;
+  }
+  renderDeriveToken() {
+    const account = this.props.navigation.state.params.account;
+    if (account.canDeriveToken) {
+      return (
+        <Button
+          title="Derive token"
+          onPress={() => {
+            this.props.navigation.push("AccountDeriveToken", { account });
+          }}
+        />
+      );
+    } else {
+      return null;
+    }
   }
 }
 
