@@ -1,5 +1,7 @@
 import { AsyncStorage } from "react-native";
+import BankAccount from "./BankAccount";
 import parseAccount from "./AccountParser";
+import config from "../config.json";
 
 class AccountManager {
   async getAccounts() {
@@ -9,12 +11,29 @@ class AccountManager {
         JSON.stringify([])
       );
     }
-    return JSON.parse(
+    let accounts = JSON.parse(
       await AsyncStorage.getItem("@AccountManager:accounts")
     ).map((account, index) => {
       if (account[0] === null) this.delete(index);
       return parseAccount(account);
     });
+
+    const session = await this.getAuthDetails();
+    if (session) {
+      await fetch(config.backendEndpoint + "/users/my-accounts", {
+        headers: { session }
+      })
+        .then(res => res.json())
+        .then(res => {
+          accounts = [
+            ...res.accounts.map(acc => new BankAccount(acc)),
+            ...accounts
+          ];
+        })
+        .catch(console.log);
+    }
+
+    return accounts;
     /*return await new Promise(resolve => {
       setTimeout(
         () =>

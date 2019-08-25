@@ -3,6 +3,8 @@ import { Text, View, Button, TouchableOpacity } from "react-native";
 import AccountManager from "../../utils/AccountManager";
 import ListItem from "../../components/ListItem";
 
+import config from "../../config.json";
+
 export default class SettingsScreen extends Component {
   constructor(props) {
     super(props);
@@ -53,16 +55,31 @@ export default class SettingsScreen extends Component {
             </ListItem>
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity
-            onPress={async () => {
-              await AccountManager.deauth();
-              this.updateAuth();
-            }}
-          >
-            <ListItem>
-              <Text style={{ color: "red" }}>Deauth TPP (debug)</Text>
-            </ListItem>
-          </TouchableOpacity>
+          <View>
+            <TouchableOpacity
+              onPress={async () => {
+                fetch(config.backendEndpoint + "/users/my-accounts", {
+                  headers: { session: await AccountManager.getAuthDetails() }
+                })
+                  .then(res => res.json())
+                  .then(console.log);
+              }}
+            >
+              <ListItem>
+                <Text style={{ color: "red" }}>Log accounts</Text>
+              </ListItem>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={async () => {
+                await AccountManager.deauth();
+                this.updateAuth();
+              }}
+            >
+              <ListItem>
+                <Text style={{ color: "red" }}>Deauth TPP (debug)</Text>
+              </ListItem>
+            </TouchableOpacity>
+          </View>
         )}
       </View>
     );
